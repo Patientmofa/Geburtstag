@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiderman-Party Einladung</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>️ SPIDERMAN-PARTY!</h1>
+        </div>
+        <div class="content">
+            <h2>Adam wird 4 Jahre alt!</h2>
+            <p>Hallo!</p>
+            <p>Ich bin der Adam und ich werde bald 4 Jahre alt! Deshalb mache ich eine coole Spiderman-Geburtstagsparty!</p>
+            <h3>WANN?</h3>
+            <p>Sonntag, den 06.07.<br>
+            Beginn: 16:00 Uhr</p>
+            <h3>WO?</h3>
+            <p>Bei mir zu Hause</p>
+            <div id="countdown">
+                <h3>Countdown bis zur Party:</h3>
+                <p id="timer"></p>
+            </div>
+            <div class="rsvp">
+                <h3>BITTE ANTWORTE!</h3>
+                <p>Wenn du kommen willst, sag bitte bis zum 03.07. Bescheid! ✅</p>
+                <button id="rsvp-yes">Zusagen</button>
+                <button id="rsvp-no">Absagen</button>
+                <p id="rsvp-response" style="display: none;"></p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Ich freu mich auf dich! <br>Dein Adam</p>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        const countdownDate = new Date("Jul 6, 2025 16:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "Die Party hat begonnen!";
+            }
+        }, 1000);
+
+        // RSVP Buttons
+        document.getElementById("rsvp-yes").addEventListener("click", function() {
+            document.getElementById("rsvp-response").style.display = "block";
+            document.getElementById("rsvp-response").innerHTML = "Super, du bist dabei!";
+        });
+
+        document.getElementById("rsvp-no").addEventListener("click", function() {
+            document.getElementById("rsvp-response").style.display = "block";
+            document.getElementById("rsvp-response").innerHTML = "Schade, vielleicht nächstes Mal!";
+        });
+    </script>
+</body>
+</html>
